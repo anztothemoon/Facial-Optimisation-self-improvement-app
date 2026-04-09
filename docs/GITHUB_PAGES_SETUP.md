@@ -32,16 +32,44 @@ git push -u origin main
 
 ## Step 2 — Turn on GitHub Pages
 
-1. On GitHub, open your repo → **Settings**.
-2. Left sidebar → **Pages** (under “Code and automation”).
-3. **Build and deployment** → **Source**: choose **Deploy from a branch**.
-4. **Branch**: `main`, folder **`/docs`** → **Save**.
+### Fastest: open Pages settings directly
+
+Use this link (same place as “Build and deployment”; GitHub sometimes hides the wording):
+
+**[→ Pages settings for this repo](https://github.com/anztothemoon/Facial-Optimisation-self-improvement-app/settings/pages)**
+
+1. Sign in if asked.
+2. Under **“GitHub Pages”** (top of the page), find the **source** controls:
+   - If you see **“GitHub Actions”** selected, switch to **“Deploy from a branch”** (or **“Branch”** only — depends on GitHub’s layout).
+   - **Branch**: choose **`main`**, then choose folder **`/docs`** (not `/ root`).
+3. Click **Save** (or **Save** next to the branch row).
+
+If you do not see **Pages** in the left sidebar: open **Settings** on the repo (tab next to *Insights*), scroll the **left** menu to **“Code and automation”**, then **Pages**. You must be logged in as someone with **admin** on the repo.
 
 Wait 1–3 minutes. The site will be at:
 
 `https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/`
 
-If you see a 404, wait a bit and hard-refresh. First deploy can take a few minutes.
+If you see a 404, wait and hard-refresh. First deploy can take a few minutes.
+
+### Automate (no clicking) — API script
+
+From the project root in PowerShell, with a [classic token](https://github.com/settings/tokens) that has the **`repo`** scope:
+
+```powershell
+$env:GITHUB_TOKEN = "ghp_xxxxxxxx"   # your PAT; do not commit this
+.\scripts\enable-github-pages.ps1
+```
+
+This calls GitHub’s API to publish from **`main`** + **`/docs`**. Fine-grained tokens work if they include **Administration** on this repository.
+
+---
+
+## Automation for Cursor / assistants
+
+- **This repo** includes `scripts/enable-github-pages.ps1` so you (or an agent) can enable Pages after setting `GITHUB_TOKEN` once in the shell.
+- **GitHub CLI** (`gh`): install from [cli.github.com](https://cli.github.com/) — then `gh auth login` and you can script `gh api` similarly.
+- **MCP in Cursor**: In Cursor Settings → **MCP**, you can add servers (e.g. community **GitHub MCP**) so tools can call the API with a configured token — useful for “do it for me” workflows. Cursor does not ship GitHub Pages toggles in the core product; a PAT + script or MCP is the usual approach.
 
 ---
 
