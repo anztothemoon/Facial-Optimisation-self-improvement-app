@@ -54,6 +54,15 @@ try {
     $null = Invoke-RestMethod -Uri $repoUri -Method Get -Headers $headers
 } catch {
     $code = Get-StatusCode $_
+    if ($code -eq 401) {
+        Write-Host "HTTP 401 — GitHub rejected this token (not a private-repo issue)." -ForegroundColor Red
+        Write-Host "Fix: create a NEW token at https://github.com/settings/tokens" -ForegroundColor Yellow
+        Write-Host "  • Copy the token once; no extra spaces or line breaks." -ForegroundColor Gray
+        Write-Host '  • $env:GITHUB_TOKEN = "paste_here"  (use straight quotes)' -ForegroundColor Gray
+        Write-Host "  • Classic: enable scope `repo`. Fine-grained: add this repo + Administration read/write." -ForegroundColor Gray
+        Write-Host "  • Sanity check: same token must work for GET https://api.github.com/user (see GitHub REST docs)." -ForegroundColor DarkGray
+        exit 1
+    }
     if ($code -eq 404) {
         Write-Host "This token cannot access $Owner/$Repo (HTTP 404)." -ForegroundColor Red
         Write-Host "If you use a fine-grained PAT: GitHub → Settings → Developer settings → edit the token →" -ForegroundColor Yellow
