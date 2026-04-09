@@ -38,6 +38,8 @@ $bodyObj = @{
 }
 $bodyJson = $bodyObj | ConvertTo-Json -Depth 5 -Compress
 
+$repoUri = "https://api.github.com/repos/$Owner/$Repo"
+
 function Get-StatusCode {
     param($ErrorRecord)
     try {
@@ -45,6 +47,22 @@ function Get-StatusCode {
     } catch {
         return 0
     }
+}
+
+# --- Preflight: token must be able to see the repo (fine-grained tokens need this repo selected) ---
+try {
+    $null = Invoke-RestMethod -Uri $repoUri -Method Get -Headers $headers
+} catch {
+    $code = Get-StatusCode $_
+    if ($code -eq 404) {
+        Write-Host "This token cannot access $Owner/$Repo (HTTP 404)." -ForegroundColor Red
+        Write-Host "If you use a fine-grained PAT: GitHub → Settings → Developer settings → edit the token →" -ForegroundColor Yellow
+        Write-Host "  Repository access: add this repository (or All repositories)." -ForegroundColor Yellow
+        Write-Host "  Permissions → Repository → Administration: Read and write." -ForegroundColor Yellow
+        Write-Host "Or use a classic PAT with the 'repo' scope." -ForegroundColor Yellow
+        exit 1
+    }
+    throw
 }
 
 # --- GET: does Pages exist? ---
