@@ -1,29 +1,43 @@
 # Enables GitHub Pages: branch main, folder /docs (GitHub REST API).
-# Requires: $env:GITHUB_TOKEN — classic PAT with `repo` scope, or fine-grained with Administration on this repo.
+# Requires: classic PAT (`repo`) or fine-grained (this repo + Administration read/write).
 # Create: https://github.com/settings/tokens
 #
+# Token (pick one — file avoids PowerShell quote issues):
+#   1) One-line file: repo root `.github-token` (gitignored) — paste token only, no quotes
+#   2) $env:GITHUB_TOKEN = "ghp_...." in this shell
+#
 # Usage:
-#   $env:GITHUB_TOKEN = "ghp_...."
 #   .\scripts\enable-github-pages.ps1
+#   .\scripts\enable-github-pages.ps1 -TokenFile D:\safe\pat.txt
 
 param(
     [string] $Owner = "anztothemoon",
     [string] $Repo = "Facial-Optimisation-self-improvement-app",
     [string] $Branch = "main",
-    [string] $Path = "/docs"
+    [string] $Path = "/docs",
+    [string] $TokenFile = ""
 )
 
 $ErrorActionPreference = "Stop"
 
-if (-not $env:GITHUB_TOKEN) {
-    Write-Host "Set GITHUB_TOKEN first. Example:" -ForegroundColor Yellow
-    Write-Host '  $env:GITHUB_TOKEN = "ghp_your_classic_pat_here"' -ForegroundColor Gray
-    Write-Host "Then run: .\scripts\enable-github-pages.ps1" -ForegroundColor Yellow
+. "$PSScriptRoot\_github-token.ps1"
+if ($TokenFile) {
+    $ghPat = Get-GitHubTokenResolved -TokenFile $TokenFile
+} else {
+    $ghPat = Get-GitHubTokenResolved
+}
+
+if (-not $ghPat) {
+    Write-Host "No GitHub token found." -ForegroundColor Yellow
+    Write-Host "Easiest: create a file named .github-token in the repo root (same folder as package.json)." -ForegroundColor Gray
+    Write-Host "  Put ONE line: your token only (ghp_... or github_pat_...), no quotes, then save." -ForegroundColor Gray
+    Write-Host "Or set: `$env:GITHUB_TOKEN = '...'`" -ForegroundColor Gray
+    Write-Host "Test first: .\scripts\test-github-token.ps1" -ForegroundColor Cyan
     exit 1
 }
 
 $headers = @{
-    Authorization          = "Bearer $($env:GITHUB_TOKEN.Trim())"
+    Authorization          = "Bearer $ghPat"
     Accept                   = "application/vnd.github+json"
     "X-GitHub-Api-Version" = "2022-11-28"
 }

@@ -10,3 +10,6 @@ frontend/.env
 **/*firebase-adminsdk*.json
 
 node_modules/
+
+# Local GitHub PAT for scripts (never commit)
+.github-token
