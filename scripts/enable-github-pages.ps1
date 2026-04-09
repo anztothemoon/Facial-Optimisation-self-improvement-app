@@ -117,7 +117,16 @@ try {
     exit 0
 } catch {
     $code = Get-StatusCode $_
+    $msg = $null
+    try { $msg = ($_.ErrorDetails.Message | ConvertFrom-Json).message } catch { }
+    if ($code -eq 422 -and $msg -match 'plan') {
+        Write-Host "POST failed (HTTP 422): GitHub Pages is not available for this repo on your current plan." -ForegroundColor Red
+        Write-Host "Common fix: set the repository to Public (Settings - General - Danger Zone), or upgrade GitHub for private Pages." -ForegroundColor Yellow
+        Write-Host "Alternative: host the docs/ folder on Netlify, Cloudflare Pages, or Vercel (static HTML)." -ForegroundColor Gray
+        exit 1
+    }
     Write-Host "POST failed (HTTP $code). If Pages was created in the UI, try again or set source manually:" -ForegroundColor Yellow
+    if ($msg) { Write-Host $msg -ForegroundColor DarkYellow }
     Write-Host "https://github.com/$Owner/$Repo/settings/pages" -ForegroundColor Gray
     throw
 }
