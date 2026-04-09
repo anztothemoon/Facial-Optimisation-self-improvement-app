@@ -5,9 +5,9 @@ This folder contains a **static** mini-site: `index.html`, `privacy.html`, `term
 **This project is configured for:**
 
 ```text
-https://anztothemoon.github.io/facial-optimisation-self-improvement-app/
-https://anztothemoon.github.io/facial-optimisation-self-improvement-app/privacy.html
-https://anztothemoon.github.io/facial-optimisation-self-improvement-app/terms.html
+https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/
+https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/privacy.html
+https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/terms.html
 ```
 
 ---
@@ -22,7 +22,7 @@ git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
-git remote add origin https://github.com/anztothemoon/facial-optimisation-self-improvement-app.git
+git remote add origin https://github.com/anztothemoon/Facial-Optimisation-self-improvement-app.git
 git push -u origin main
 ```
 
@@ -39,7 +39,7 @@ git push -u origin main
 
 Wait 1–3 minutes. The site will be at:
 
-`https://anztothemoon.github.io/facial-optimisation-self-improvement-app/`
+`https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/`
 
 If you see a 404, wait a bit and hard-refresh. First deploy can take a few minutes.
 
@@ -62,8 +62,8 @@ Then commit and push again; Pages will update automatically.
 In `frontend/.env`:
 
 ```env
-EXPO_PUBLIC_PRIVACY_URL=https://anztothemoon.github.io/facial-optimisation-self-improvement-app/privacy.html
-EXPO_PUBLIC_TERMS_URL=https://anztothemoon.github.io/facial-optimisation-self-improvement-app/terms.html
+EXPO_PUBLIC_PRIVACY_URL=https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/privacy.html
+EXPO_PUBLIC_TERMS_URL=https://anztothemoon.github.io/Facial-Optimisation-self-improvement-app/terms.html
 EXPO_PUBLIC_COMPANY_NAME=Anz To The Moon
 EXPO_PUBLIC_SUPPORT_EMAIL=
 ```
