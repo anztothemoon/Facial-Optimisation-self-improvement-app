@@ -1,0 +1,10 @@
+# Env files (secrets) — never commit
+backend/.env
+frontend/.env
+.env
+.env.*
+
+# Firebase keys often accidentally dropped in repo
+**/*firebase-adminsdk*.json
+
+node_modules/

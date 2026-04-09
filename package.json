@@ -1,0 +1,14 @@
+{
+  "name": "looksmax-pro",
+  "private": true,
+  "description": "Run API + Expo together from the repo root",
+  "scripts": {
+    "dev": "concurrently -k -n api,app -c cyan,magenta \"npm run dev --prefix backend\" \"npm run start --prefix frontend\"",
+    "dev:api": "npm run dev --prefix backend",
+    "dev:app": "npm run start --prefix frontend",
+    "dev:app:tunnel": "npm run start:tunnel --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
