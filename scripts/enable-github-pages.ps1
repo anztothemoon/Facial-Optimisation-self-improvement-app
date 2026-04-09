@@ -31,7 +31,7 @@ if (-not $ghPat) {
     Write-Host "No GitHub token found." -ForegroundColor Yellow
     Write-Host "Easiest: create a file named .github-token in the repo root (same folder as package.json)." -ForegroundColor Gray
     Write-Host "  Put ONE line: your token only (ghp_... or github_pat_...), no quotes, then save." -ForegroundColor Gray
-    Write-Host "Or set: `$env:GITHUB_TOKEN = '...'`" -ForegroundColor Gray
+    Write-Host 'Or set: $env:GITHUB_TOKEN = (paste token in this shell only)' -ForegroundColor Gray
     Write-Host "Test first: .\scripts\test-github-token.ps1" -ForegroundColor Cyan
     exit 1
 }
@@ -69,20 +69,17 @@ try {
 } catch {
     $code = Get-StatusCode $_
     if ($code -eq 401) {
-        Write-Host "HTTP 401 — GitHub rejected this token (not a private-repo issue)." -ForegroundColor Red
-        Write-Host "Fix: create a NEW token at https://github.com/settings/tokens" -ForegroundColor Yellow
-        Write-Host "  • Copy the token once; no extra spaces or line breaks." -ForegroundColor Gray
-        Write-Host '  • $env:GITHUB_TOKEN = "paste_here"  (use straight quotes)' -ForegroundColor Gray
-        Write-Host "  • Classic: enable scope `repo`. Fine-grained: add this repo + Administration read/write." -ForegroundColor Gray
-        Write-Host "  • Sanity check: same token must work for GET https://api.github.com/user (see GitHub REST docs)." -ForegroundColor DarkGray
+        Write-Host 'HTTP 401 - GitHub rejected this token (not a private-repo issue).' -ForegroundColor Red
+        Write-Host 'Fix: create a NEW token at https://github.com/settings/tokens' -ForegroundColor Yellow
+        Write-Host '  - Copy the token once; no extra spaces or line breaks.' -ForegroundColor Gray
+        Write-Host '  - Classic PAT: enable scope repo. Fine-grained: add this repo + Administration read/write.' -ForegroundColor Gray
+        Write-Host '  - Test: GET https://api.github.com/user must return your login JSON.' -ForegroundColor DarkGray
         exit 1
     }
     if ($code -eq 404) {
         Write-Host "This token cannot access $Owner/$Repo (HTTP 404)." -ForegroundColor Red
-        Write-Host "If you use a fine-grained PAT: GitHub → Settings → Developer settings → edit the token →" -ForegroundColor Yellow
-        Write-Host "  Repository access: add this repository (or All repositories)." -ForegroundColor Yellow
-        Write-Host "  Permissions → Repository → Administration: Read and write." -ForegroundColor Yellow
-        Write-Host "Or use a classic PAT with the 'repo' scope." -ForegroundColor Yellow
+        Write-Host 'Fine-grained PAT: GitHub - Settings - Developer settings - edit token - add repository access + Administration.' -ForegroundColor Yellow
+        Write-Host 'Or use a classic PAT with the repo scope.' -ForegroundColor Yellow
         exit 1
     }
     throw
