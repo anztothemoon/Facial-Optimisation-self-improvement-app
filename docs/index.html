@@ -26,8 +26,8 @@
           <a href="#features">Features</a>
           <a href="#how">How it works</a>
           <a href="#preview">Screens</a>
+          <a href="#get-app">Availability</a>
           <a href="#testers">Test the app</a>
-          <a href="#get-app">Get the app</a>
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
         </nav>
@@ -35,30 +35,41 @@
 
       <main id="main">
         <section class="hero">
-          <p class="eyebrow">Mobile app · iOS &amp; Android</p>
+          <p class="eyebrow">In development · iOS &amp; Android</p>
           <h1>
             Face &amp; body protocol,
             <span class="hero-highlight">in your pocket</span>
           </h1>
           <p class="hero-lead">
-            Routines, progress, and AI coaching — built for people who want a
-            structured way to work on how they look and feel. Not medical care.
+            Routines, progress, and AI coaching — for people who want a clear
+            structure around how they look and feel. Educational wellness, not
+            medical care.
           </p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#get-app">Get the app</a>
-            <a class="btn btn-ghost" href="privacy.html">Privacy policy</a>
+            <a class="btn btn-primary" href="#testers">How to try it</a>
+            <a class="btn btn-ghost" href="#get-app">Store availability</a>
+            <a class="btn btn-ghost" href="privacy.html">Privacy</a>
+          </div>
+          <div class="hero-status" role="status">
+            <p class="hero-status-title">Availability</p>
+            <p class="hero-status-text">
+              <strong>Not on the App Store or Google Play yet.</strong>
+              There is no public install link. Developers and friends can run a
+              preview using Expo Go — see <a href="#testers">testing steps</a> below.
+            </p>
           </div>
           <p class="hero-note">
-            Subscriptions &amp; payments run securely <strong>inside the app</strong>
-            (Stripe). This website is for info &amp; legal pages only.
+            Billing is in the app (Stripe). This site is for policies, FAQs, and
+            discovery — not checkout.
           </p>
         </section>
 
         <section id="features" class="section" aria-labelledby="features-heading">
+          <span class="section-kicker">Product</span>
           <h2 id="features-heading">What you get</h2>
           <p class="section-intro">
-            Everything below is in the mobile app — the site stays lightweight so
-            stores and reviewers can link to clear policies.
+            All of this ships in the mobile app. This page is the lightweight home
+            for reviewers, testers, and legal links.
           </p>
           <div class="grid">
             <article class="feature-card">
@@ -96,9 +107,11 @@
         </section>
 
         <section id="how" class="section" aria-labelledby="how-heading">
+          <span class="section-kicker">Flow</span>
           <h2 id="how-heading">How it works</h2>
           <p class="section-intro">
-            Three steps — same flow you will describe in store listings.
+            The journey users take once they have the app installed — useful copy
+            for when you submit to Apple and Google.
           </p>
           <ol class="steps">
             <li>
@@ -120,12 +133,13 @@
         </section>
 
         <section id="preview" class="section" aria-labelledby="preview-heading">
+          <span class="section-kicker">Interface</span>
           <h2 id="preview-heading">Inside the app</h2>
           <p class="section-intro">
-            These are <strong>illustrative mockups</strong> (not screenshots) so
-            visitors see the kind of screens and layout — dark UI, glass-style
-            panels, cyan accents — without shipping images yet. Replace with real
-            screenshots when you have store assets.
+            <strong>Illustrative mockups</strong> (not real screenshots): same dark
+            UI, panels, and cyan accents as the app. Drop real PNGs into
+            <code style="font-size: 0.85em">docs/assets/screenshots/</code> later
+            and swap these for marketing shots.
           </p>
 
           <div class="phone-grid" role="list">
@@ -294,7 +308,70 @@
           </div>
         </section>
 
+        <section
+          id="get-app"
+          class="section get-app"
+          aria-labelledby="get-app-heading"
+        >
+          <span class="section-kicker">Stores</span>
+          <h2 id="get-app-heading">App Store &amp; Google Play</h2>
+          <p class="section-intro">
+            Looksmax Pro is <strong>not available</strong> on Apple’s App Store or
+            Google Play <strong>right now</strong>. This page cannot install
+            anything — there is no public download until you publish a release and
+            add real store links here.
+          </p>
+
+          <div class="store-status-grid" role="list">
+            <div class="store-status-item" role="listitem">
+              <span class="store-status-mark" aria-hidden="true">iOS</span>
+              <div>
+                <h3>Apple App Store</h3>
+                <span class="store-status-pill">Not listed</span>
+                <p class="store-status-meta">
+                  No App Store listing yet. Later: TestFlight for beta testers,
+                  then a public page when you submit for review.
+                </p>
+              </div>
+            </div>
+            <div class="store-status-item" role="listitem">
+              <span class="store-status-mark" aria-hidden="true">GP</span>
+              <div>
+                <h3>Google Play (Android)</h3>
+                <span class="store-status-pill">Not listed</span>
+                <p class="store-status-meta">
+                  No Play Store listing yet. Later: internal / closed testing, then
+                  production when you’re ready.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="get-app-actions">
+            <a class="btn btn-primary" href="#testers">How to try a preview build</a>
+            <a
+              class="btn btn-outline"
+              href="https://github.com/anztothemoon/Facial-Optimisation-self-improvement-app/issues"
+              >Questions &amp; feedback</a
+            >
+          </div>
+
+          <p class="get-app-footnote">
+            When you go live, replace this block with real
+            <strong>View on the App Store</strong> and
+            <strong>Get it on Google Play</strong> buttons. Until then, the honest
+            status above avoids “broken” store buttons. Repo:
+            <a
+              href="https://github.com/anztothemoon/Facial-Optimisation-self-improvement-app"
+              >GitHub</a
+            >
+            · <a href="privacy.html">Privacy</a> ·
+            <a href="terms.html">Terms</a>
+          </p>
+        </section>
+
         <section id="testers" class="section section--testers" aria-labelledby="testers-heading">
+          <span class="section-kicker">Testing</span>
           <h2 id="testers-heading">How testers run the app</h2>
           <p class="section-intro">
             There is no web version of the product — testers use
@@ -353,41 +430,24 @@
           </p>
         </section>
 
-        <section
-          id="get-app"
-          class="section get-app"
-          aria-labelledby="get-app-heading"
-        >
-          <h2 id="get-app-heading">Get Looksmax Pro</h2>
-          <p class="section-intro">
-            The product is <strong>mobile-only</strong>. Store links appear here
-            once you publish to the App Store and Google Play.
-          </p>
-          <div class="store-row">
-            <span class="store-badge" title="Add your App Store URL when live"
-              >App Store — coming soon</span
-            >
-            <span
-              class="store-badge"
-              title="Add your Google Play URL when live"
-              >Google Play — coming soon</span
-            >
-          </div>
-          <p class="small">
-            Testing with Expo or internal builds? Keep using your existing install
-            flow — no web checkout required.
-          </p>
-          <a
-            class="store-badge store-badge--hint"
-            href="https://github.com/anztothemoon/Facial-Optimisation-self-improvement-app/issues"
-            >Questions or feedback — GitHub</a
-          >
-        </section>
-
         <section id="faq" class="section faq" aria-labelledby="faq-heading">
-          <h2 id="faq-heading">FAQ</h2>
-          <p class="section-intro">Short answers for visitors and store reviewers.</p>
+          <span class="section-kicker">FAQ</span>
+          <h2 id="faq-heading">Common questions</h2>
+          <p class="section-intro">
+            Straight answers for visitors, testers, and store forms.
+          </p>
 
+          <details>
+            <summary>Can I download it from the App Store or Google Play?</summary>
+            <p>
+              <strong>Not yet.</strong> Looksmax Pro is not publicly listed on
+              either store. See
+              <a href="#get-app">App Store &amp; Google Play</a> for current
+              status. To try a work-in-progress build, follow
+              <a href="#testers">How testers run the app</a> (Expo Go or future
+              TestFlight / Play internal builds).
+            </p>
+          </details>
           <details>
             <summary>Is this a medical app?</summary>
             <p>
@@ -444,7 +504,7 @@
     </div>
 
     <p class="app-hint" role="status">
-      Full experience in the app — this page is for policies &amp; discovery.
+      No public store build yet — use Testing below or Availability above.
     </p>
   </body>
 </html>
